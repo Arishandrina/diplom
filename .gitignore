@@ -1,0 +1,20 @@
+# Python
+.venv/
+.venv312/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Исходные выгрузки МАРКЕР
+Реестр Торги*.xlsx
+**/Реестр Торги*.xlsx
+
+# Скачанные файлы тендерной документации
+docs/
+
+# Все таблицы в data_processed (в т.ч. marker_results_*_clean.csv, marker_docs_parsed_auto.csv, marker_results_classified.csv,
+# analysis_objects_core.csv, eis_restrictions.csv, places_validation_filled.csv, индексы Минстроя и пр.)
+data_processed/**/*.csv
+data_processed/**/*.xlsx
+
+!data_processed/README.md
