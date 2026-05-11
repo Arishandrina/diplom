@@ -2,19 +2,30 @@
 
 Репозиторий к выпускной квалификационной работе: анализ закупок и контрактов на строительство школ по данным системы **МАРКЕР** (ПФО, 2022–2025), расчет сопоставимой удельной стоимости (руб./место), проверка гипотез и бенчмаркинг с использованием NLP/LLM для извлечения признаков из документации
 
+**В Git** для промежуточных CSV, скачанных файлов и каталога `docs/` настроен `.gitignore` (исходные Excel «Реестр Торги…», папка `docs/`, все `*.csv` / `*.xlsx` в `data_processed/`)
+
+---
+
+## Структура кода
+
+- **`pipeline/`** — подготовка выгрузок МАРКЕР, скачивание и парсинг документации, `fetch_eis_data.py`  
+- **`analysis/`** — классификация, сборка датасета, гипотезы и вспомогательные эксперименты  
+
+Рабочая директория ядра Jupyter: корень репозитория **или** папка `notebooks/...` (в ноутбуках корень ищется автоматически по наличию `data_processed/`).
+
 ---
 
 ## Рекомендуемый порядок запуска
 
-1. `marker_prepare.ipynb` → чистые таблицы по закупкам  
-2. `docs_download_marker_playwright.ipynb` → загрузка файлов в `docs/`  
-3. `docs_parse.ipynb` → признаки из документов  
-4. `analysis_01_classify.ipynb` → отбор публикаций по типу работ  
-5. `analysis_02_dataset.ipynb` → объекты и удельные показатели  
-6. `fetch_eis_data.py` → доп. признаки с ЕИС
-7. `analysis_03_benchmark_hypotheses.ipynb` → удельная стоимость: бенчмаркинг, H1–H2, RCF и аномалии  
-8. `analysis_04_h3h5.ipynb` → ограничительность (PCA), H3–H5  
-9. `analysis_05_places_extraction.ipynb` → качество извлечения `places`  
+1. pipeline / `marker_prepare.ipynb` → чистые таблицы по закупкам  
+3. pipeline / `docs_download_marker_playwright.ipynb` → загрузка файлов в `docs/`  
+4. pipeline / `docs_parse.ipynb` → признаки из документов  
+5. analysis / `analysis_01_classify.ipynb` → отбор публикаций по типу работ  
+7. analysis / `analysis_02_dataset.ipynb` → объекты и удельные показатели  
+8. pipeline / `fetch_eis_data.py` → доп. признаки с ЕИС
+9. analysis / `analysis_03_benchmark_hypotheses.ipynb` → удельная стоимость: бенчмаркинг, H1–H2, RCF и аномалии  
+10. analysis / `analysis_04_h3h5.ipynb` → ограничительность (PCA), H3–H5  
+11. analysis / `analysis_05_places_extraction.ipynb` → качество извлечения `places`  
 
 ---
 
@@ -145,9 +156,3 @@ source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 playwright install chromium   # для docs_download_marker_playwright.ipynb
 ```
-
-Файл **`requirements.txt`** собран по импортам ноутбуков и `fetch_eis_data.py`
-
----
-
-## Лицензия и данные
